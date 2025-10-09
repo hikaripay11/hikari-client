@@ -1,0 +1,5 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  flutter:
+    uses: lunalism/hikari-ops/.github/workflows/reusable-flutter.yml@main
