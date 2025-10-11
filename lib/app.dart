@@ -19,8 +19,7 @@ class HikariApp extends StatelessWidget {
 }
 
 class _NavShell extends StatefulWidget {
-    const _NavShell();
-
+    const _NavShell({super.key});
     @override
     State<_NavShell> createState() => _NavShellState();
 }
