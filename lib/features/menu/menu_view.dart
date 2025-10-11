@@ -9,6 +9,8 @@ class MenuView extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
         final cs = Theme.of(context).colorScheme;
+        final bottomSafe = MediaQuery.of(context).padding.bottom;
+        const pillHeight = 76.0; // PillNavBar 대략 높이(+마진) 만큼
 
         return Scaffold(
             backgroundColor: cs.surface,
@@ -37,7 +39,7 @@ class MenuView extends StatelessWidget {
                 ],
             ),
             body: ListView(
-                padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+                padding: EdgeInsets.fromLTRB(16, 8, 16, bottomSafe + 4),
                 children: [
                     _Section(
                         title: 'Money Actions',
@@ -50,7 +52,7 @@ class MenuView extends StatelessWidget {
                         title: 'Accounts & Instruments',
                         items: const [
                             _ItemData('Linked Banks', Remix.bank_line),
-                            _ItemData('Cards & Payments', Remix.credit_card_line),
+                            _ItemData('Cards & Payments', Remix.bank_card_line),
                         ],
                     ),
                     _Section(
@@ -96,13 +98,19 @@ class MenuView extends StatelessWidget {
 class _Section extends StatelessWidget {
     final String title;
     final List<_ItemData> items;
-    const _Section({required this.title, required this.items});
+    final bool isLast;
+    
+    const _Section({
+        required this.title,
+        required this.items,
+        this.isLast = false,
+    });
 
     @override
     Widget build(BuildContext context) {
         final cs = Theme.of(context).colorScheme;
         return Padding(
-            padding: const EdgeInsets.only(bottom: 16),
+            padding: EdgeInsets.only(bottom: isLast ? 0 : 16),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
