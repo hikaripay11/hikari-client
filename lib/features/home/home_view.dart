@@ -6,41 +6,38 @@ import 'widgets/account_card.dart';
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
-  String _formatJPY(num value) {
-    final f = NumberFormat.currency(locale: 'ja_JP', symbol: '¥', decimalDigits: 0);
-    return f.format(value);
-  }
+  String _formatJPY(num value) =>
+      NumberFormat.currency(locale: 'ja_JP', symbol: '¥', decimalDigits: 0).format(value);
 
   @override
   Widget build(BuildContext context) {
-    // 🇯🇵 연결된 은행(모크 데이터)
+    // Connected accounts (mock)
     final accounts = [
       AccountCard(
         bankName: 'SMBC',
-        nickname: '生活費口座',
-        balanceJPY: 12503490,
+        nickname: 'Living Expense',
+        balanceJPY: 142380,
         logoAsset: 'assets/images/banks/smbc.png',
-        onSend: () {}, // TODO: 送金フロー
+        onSend: () {},
       ),
       AccountCard(
-        bankName: 'PayPay銀行',
-        nickname: '給与受取',
-        balanceJPY: 2890000,
+        bankName: 'PayPay Bank',
+        nickname: 'Salary',
+        balanceJPY: 86720,
         logoAsset: 'assets/images/banks/paypay.png',
         onSend: () {},
       ),
       AccountCard(
-        bankName: 'セブン銀行',
-        nickname: '貯金用',
-        balanceJPY: 75896410,
+        bankName: 'Seven Bank',
+        nickname: 'Savings',
+        balanceJPY: 1256000,
         logoAsset: 'assets/images/banks/seven.png',
         onSend: () {},
       ),
     ];
 
-    // 총자산/이번달 지출(모크)
     final totalBalance = accounts.fold<num>(0, (sum, a) => sum + a.balanceJPY);
-    final monthlySpent = 158200; // TODO: 이번달 지출 합계로 교체
+    final monthlySpent = 218400; // mock
 
     return Scaffold(
       backgroundColor: HikariColors.surfaceLight,
@@ -49,7 +46,7 @@ class HomeView extends StatelessWidget {
         elevation: 0,
         centerTitle: false,
         title: const Text(
-          'ようこそ、佐藤 翔太さん',
+          'Welcome, Shota Sato',
           style: TextStyle(
             color: HikariColors.textPrimary,
             fontSize: 22,
@@ -68,7 +65,7 @@ class HomeView extends StatelessWidget {
       ),
       body: CustomScrollView(
         slivers: [
-          // ── 総合サマリー 카드 (총자산 / 이번달 지출)
+          // Summary (Total / Spent)
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
@@ -86,17 +83,17 @@ class HomeView extends StatelessWidget {
                   children: [
                     Expanded(
                       child: _SummaryItem(
-                        label: '総資産',
+                        label: 'Total Assets',
                         value: _formatJPY(totalBalance),
-                        valueColor: HikariColors.textPrimary,
+                        isDanger: false,
                       ),
                     ),
                     const SizedBox(width: 16),
                     Expanded(
                       child: _SummaryItem(
-                        label: '今月の支出',
+                        label: 'Spent this month',
                         value: _formatJPY(monthlySpent),
-                        valueColor: HikariColors.danger, // 살짝 강조
+                        isDanger: true,
                       ),
                     ),
                   ],
@@ -105,27 +102,27 @@ class HomeView extends StatelessWidget {
             ),
           ),
 
-          // ── 口座一覧 헤더
+          // Accounts header
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
               child: Row(
                 children: [
                   Text(
-                    '口座一覧',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(color: Colors.black54, fontWeight: FontWeight.w600),
+                    'Accounts',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: Colors.black54,
+                          fontWeight: FontWeight.w600,
+                        ),
                   ),
                   const Spacer(),
-                  TextButton(onPressed: () {}, child: const Text('管理 >')),
+                  TextButton(onPressed: () {}, child: const Text('Manage >')),
                 ],
               ),
             ),
           ),
 
-          // ── 계좌 리스트
+          // Accounts list
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             sliver: SliverList.builder(
@@ -134,7 +131,6 @@ class HomeView extends StatelessWidget {
             ),
           ),
 
-          // 하단 네비게이션 여백
           const SliverToBoxAdapter(child: SizedBox(height: 120)),
         ],
       ),
@@ -145,12 +141,8 @@ class HomeView extends StatelessWidget {
 class _SummaryItem extends StatelessWidget {
   final String label;
   final String value;
-  final Color valueColor;
-  const _SummaryItem({
-    required this.label,
-    required this.value,
-    required this.valueColor,
-  });
+  final bool isDanger;
+  const _SummaryItem({required this.label, required this.value, this.isDanger = false});
 
   @override
   Widget build(BuildContext context) {
@@ -164,7 +156,7 @@ class _SummaryItem extends StatelessWidget {
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w700,
-            color: valueColor,
+            color: isDanger ? HikariColors.danger : HikariColors.textPrimary,
           ),
         ),
       ],
