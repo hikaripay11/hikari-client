@@ -1,7 +1,9 @@
+// lib/app.dart
 import 'package:flutter/material.dart';
 import 'design_system/theme.dart';
 import 'features/home/home_view.dart';
 import 'widgets/pill_navbar.dart';
+import 'features/menu/menu_view.dart';
 
 class HikariApp extends StatelessWidget {
     const HikariApp({super.key});
@@ -31,7 +33,7 @@ class _NavShellState extends State<_NavShell> {
         HomeView(),
         Placeholder(),
         Placeholder(),
-        Placeholder(),
+        MenuView(),
     ];
 
     @override

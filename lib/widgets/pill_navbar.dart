@@ -1,3 +1,4 @@
+// lib/widgets/pill_navbar.dart
 import 'package:flutter/material.dart';
 import 'package:remixicon/remixicon.dart';
 import '../design_system/colors.dart';
