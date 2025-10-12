@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:remixicon/remixicon.dart';
 import '../../design_system/colors.dart'; // HikariColor 접근 경로 수정
 import '../settings/settings_view.dart';
+import '../../widgets/svg_icon.dart';
 
 class MenuView extends StatelessWidget {
     const MenuView({super.key});
@@ -47,46 +48,46 @@ class MenuView extends StatelessWidget {
                     _Section(
                         title: 'Money Actions',
                         items: const [
-                            _ItemData('Send Money', Remix.send_plane_line),
-                            _ItemData('Request Money', Remix.download_2_line),
+                            _ItemData('Send Money', 'send-plane'),
+                            _ItemData('Request Money', 'download'),
                         ],
                     ),
                     _Section(
                         title: 'Accounts & Instruments',
                         items: const [
-                            _ItemData('Linked Banks', Remix.bank_line),
-                            _ItemData('Cards & Payments', Remix.bank_card_line),
+                            _ItemData('Linked Banks', 'bank'),
+                            _ItemData('Cards & Payments', 'credit-card'),
                         ],
                     ),
                     _Section(
                         title: 'Activity & Records',
                         items: const [
-                            _ItemData('Transaction History', Remix.exchange_box_line),
-                            _ItemData('Receipts Box', Remix.file_list_3_line),
+                            _ItemData('Transaction History', 'exchange-box'),
+                            _ItemData('Receipts Box', 'file-list'),
                         ],
                     ),
                     _Section(
                         title: 'Insights & Tools',
                         items: const [
-                            _ItemData('Spending Insights', Remix.bar_chart_2_line),
-                            _ItemData('Budget & Limits', Remix.speed_up_line),
-                            _ItemData('Currency Rates', Remix.exchange_line),
+                            _ItemData('Spending Insights', 'bar-chart-2'),
+                            _ItemData('Budget & Limits', 'speed-up'),
+                            _ItemData('Currency Rates', 'exchange'),
                         ],
                     ),
                     _Section(
                         title: 'Rewards & Growth',
                         items: const [
-                            _ItemData('Rewards & Points', Remix.gift_line),
-                            _ItemData('Offers & Coupons', Remix.price_tag_3_line),
-                            _ItemData('Invite Friends', Remix.user_add_line),
+                            _ItemData('Rewards & Points', 'gift'),
+                            _ItemData('Offers & Coupons', 'price-tag'),
+                            _ItemData('Invite Friends', 'user-add'),
                         ],
                     ),
                     _Section(
                         title: 'Support & Info',
                         items: const [
-                            _ItemData('Help Center', Remix.question_line),
-                            _ItemData('Legal & Privacy', Remix.shield_keyhole_line),
-                            _ItemData('About Hikari', Remix.information_line),
+                            _ItemData('Help Center', 'question'),
+                            _ItemData('Legal & Privacy', 'shield-keyhole'),
+                            _ItemData('About Hikari', 'information'),
                         ],
                     ),
                     const SizedBox(height: 8),
@@ -161,19 +162,17 @@ class _MenuTile extends StatelessWidget {
     Widget build(BuildContext context) {
         final cs = Theme.of(context).colorScheme;
         return ListTile(
-            leading: Icon(data.icon, size: 22, color: cs.onSurface.withOpacity(0.85)),
+            leading: SvgIcon(data.iconName, size: 20),
             title: Text(
                 data.label,
                 style: TextStyle(
-                    color: cs.onSurface,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 15,
+                color: cs.onSurface,
+                fontWeight: FontWeight.w600,
+                fontSize: 15,
                 ),
             ),
-            trailing: Icon(Remix.arrow_right_s_line, size: 18, color: cs.onSurface.withOpacity(0.35)),
-            onTap: () {
-                // TODO: 라우팅 연결 (각 서비스 화면으로 이동)
-            },
+            trailing: SvgIcon('arrow-right-s', size: 16, color: cs.onSurface.withOpacity(0.35)),
+            onTap: data.onTap,
             contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
             horizontalTitleGap: 12,
             minLeadingWidth: 0,
@@ -184,6 +183,7 @@ class _MenuTile extends StatelessWidget {
 
 class _ItemData {
     final String label;
-    final IconData icon;
-    const _ItemData(this.label, this.icon);
+    final String iconName;
+    final VoidCallback? onTap;
+    const _ItemData(this.label, this.iconName, {this.onTap});
 }
