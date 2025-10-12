@@ -146,7 +146,7 @@ class _SettingsViewState extends State<SettingsView> {
                                 onChanged: (v) => setState(() => autoSaveReceipts = v),
                             ),
                             _SettingsTile(
-                                icon: Remix.storage_line,
+                                icon: Remix.hard_drive_line,
                                 label: 'Manage Storage',
                                 onTap: () {
                                     // TODO: 캐시/저장공간 관리

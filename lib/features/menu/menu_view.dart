@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:remixicon/remixicon.dart';
 import '../../design_system/colors.dart'; // HikariColor 접근 경로 수정
+import '../settings/settings_view.dart';
 
 class MenuView extends StatelessWidget {
     const MenuView({super.key});
@@ -32,8 +33,10 @@ class MenuView extends StatelessWidget {
                         color: cs.onSurface.withOpacity(0.85),
                         tooltip: 'Settings',
                         onPressed: () {
-                            // TODO: SettingsView 연결
-                            // Navigator.push(context, MaterialPageRoute(builder: (_) => const SettingsView()));
+                            Navigator.of(context).push(
+                                MaterialPageRoute(builder: (_) => const SettingsView()),
+                                // iOS 느낌 원하면 CupertinoPageRoute로 교체 가능
+                            );
                         },
                     ),
                 ],
