@@ -19,6 +19,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  flutter_native_splash: ^2.4.1
 
 flutter:
   uses-material-design: true
@@ -27,3 +28,14 @@ flutter:
     - assets/images/profile.png
     - assets/images/banks/
     - assets/images/icons/
+
+flutter_native_splash:
+  color: "#FFFFFF"                 # 라이트 배경
+  image: assets/images/logo.png    # 네 로고 경로
+  fullscreen: true
+  android_12:
+    color: "#FFFFFF"
+    image: assets/images/logo.png
+  # (선택) 다크모드 대응
+  color_dark: "#0E1117"
+  image_dark: assets/images/logo.png
