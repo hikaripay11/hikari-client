@@ -30,9 +30,12 @@ flutter:
     - assets/images/icons/
 
 flutter_native_splash:
-  color: "#FFFFFF"                # 라이트 배경
-  image: assets/images/logo.png   # 지금 있는 로고 경로
+  color: "#FFFFFF"                 # 라이트 배경
+  image: assets/images/logo.png    # 네 로고 경로
   fullscreen: true
   android_12:
     color: "#FFFFFF"
     image: assets/images/logo.png
+  # (선택) 다크모드 대응
+  color_dark: "#0E1117"
+  image_dark: assets/images/logo.png
