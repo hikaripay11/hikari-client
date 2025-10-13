@@ -14,6 +14,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   remixicon: ^1.4.1
   flutter_svg: ^2.2.1
+  flutter_launcher_icons: ^0.14.4
 
 dev_dependencies:
   flutter_test:
@@ -39,3 +40,11 @@ flutter_native_splash:
   # (선택) 다크모드 대응
   color_dark: "#0E1117"
   image_dark: assets/images/logo.png
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/app_icon.png"
+  adaptive_icon_background: "#FFFFFF" # 배경 (혹은 투명 가능)
+  adaptive_icon_foreground: "assets/images/app_icon.png"
+  remove_alpha_ios: true
