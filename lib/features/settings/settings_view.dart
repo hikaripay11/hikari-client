@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:remixicon/remixicon.dart';
+// import 'package:remixicon/remixicon.dart'; // ← 사용 안해서 주석 처리(원하면 유지 가능)
 import '../../design_system/colors.dart';
 import '../../widgets/svg_icon.dart';
+
+// DETAIL SCREENS
+import 'screens/my_info_screen.dart';
+import 'screens/email_verification_screen.dart';
+import 'screens/change_password_screen.dart';
+import 'screens/trusted_devices_screen.dart';
+import 'screens/transfer_deposit_alerts_screen.dart';
+import 'screens/appearance_screen.dart';
+import 'screens/text_size_screen.dart';
+import 'screens/manage_storage_screen.dart';
+import 'screens/language_screen.dart';
+import 'screens/about_hikari_screen.dart';
+import 'screens/open_source_licenses_screen.dart';
+import 'screens/privacy_terms_screen.dart';
 
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
@@ -41,9 +55,21 @@ class _SettingsViewState extends State<SettingsView> {
           _SettingsSection(
             title: 'Account',
             children: [
-              _SettingsTile(iconName: 'user', label: 'My Info', onTap: () {}),
-              _SettingsTile(iconName: 'mail-check', label: 'Email & Verification', onTap: () {}),
-              _SettingsTile(iconName: 'key', label: 'Change Password', onTap: () {}),
+              _SettingsTile(
+                iconName: 'user',
+                label: 'My Info',
+                onTap: () => _go(context, const MyInfoScreen()),
+              ),
+              _SettingsTile(
+                iconName: 'mail-check',
+                label: 'Email & Verification',
+                onTap: () => _go(context, const EmailVerificationScreen()),
+              ),
+              _SettingsTile(
+                iconName: 'key',
+                label: 'Change Password',
+                onTap: () => _go(context, const ChangePasswordScreen()),
+              ),
             ],
           ),
 
@@ -62,14 +88,22 @@ class _SettingsViewState extends State<SettingsView> {
                 value: pinLock,
                 onChanged: (v) => setState(() => pinLock = v),
               ),
-              _SettingsTile(iconName: 'device', label: 'Trusted Devices', onTap: () {}),
+              _SettingsTile(
+                iconName: 'device',
+                label: 'Trusted Devices',
+                onTap: () => _go(context, const TrustedDevicesScreen()),
+              ),
             ],
           ),
 
           _SettingsSection(
             title: 'Notifications',
             children: [
-              _SettingsTile(iconName: 'notification', label: 'Transfer & Deposit Alerts', onTap: () {}),
+              _SettingsTile(
+                iconName: 'notification',
+                label: 'Transfer & Deposit Alerts',
+                onTap: () => _go(context, const TransferDepositAlertsScreen()),
+              ),
               _SettingsSwitchTile(
                 iconName: 'megaphone',
                 label: 'Marketing Messages',
@@ -82,14 +116,22 @@ class _SettingsViewState extends State<SettingsView> {
           _SettingsSection(
             title: 'Display & Theme',
             children: [
-              _SettingsTile(iconName: 'moon-clear', label: 'Appearance (Light/Dark)', onTap: () {}),
+              _SettingsTile(
+                iconName: 'moon-clear',
+                label: 'Appearance (Light/Dark)',
+                onTap: () => _go(context, const AppearanceScreen()),
+              ),
               _SettingsSwitchTile(
                 iconName: 'magic',
                 label: 'Reduce Motion',
                 value: reduceMotion,
                 onChanged: (v) => setState(() => reduceMotion = v),
               ),
-              _SettingsTile(iconName: 'text-spacing', label: 'Text Size', onTap: () {}),
+              _SettingsTile(
+                iconName: 'text-spacing',
+                label: 'Text Size',
+                onTap: () => _go(context, const TextSizeScreen()),
+              ),
             ],
           ),
 
@@ -102,14 +144,22 @@ class _SettingsViewState extends State<SettingsView> {
                 value: autoSaveReceipts,
                 onChanged: (v) => setState(() => autoSaveReceipts = v),
               ),
-              _SettingsTile(iconName: 'storage', label: 'Manage Storage', onTap: () {}),
+              _SettingsTile(
+                iconName: 'storage',
+                label: 'Manage Storage',
+                onTap: () => _go(context, const ManageStorageScreen()),
+              ),
             ],
           ),
 
           _SettingsSection(
             title: 'Language',
             children: [
-              _SettingsTile(iconName: 'translate', label: 'App Language (EN / 日本語 / KO)', onTap: () {}),
+              _SettingsTile(
+                iconName: 'translate',
+                label: 'App Language (EN / 日本語 / KO)',
+                onTap: () => _go(context, const LanguageScreen()),
+              ),
             ],
           ),
 
@@ -122,13 +172,33 @@ class _SettingsViewState extends State<SettingsView> {
               _SettingsCaption(text: 'Version 0.1.0 (dev)'),
             ],
           ),
+
+          // 위 About 섹션을 내비게이션으로 바꾸고 싶다면 위의 const Tiles를 아래처럼 바꿔도 됨:
+          /*
+          _SettingsSection(
+            title: 'About',
+            children: [
+              _SettingsTile(iconName: 'information', label: 'About Hikari',
+                onTap: () => _go(context, const AboutHikariScreen())),
+              _SettingsTile(iconName: 'book', label: 'Open Source Licenses',
+                onTap: () => _go(context, const OpenSourceLicensesScreen())),
+              _SettingsTile(iconName: 'shield-user', label: 'Privacy & Terms',
+                onTap: () => _go(context, const PrivacyTermsScreen())),
+              const _SettingsCaption(text: 'Version 0.1.0 (dev)'),
+            ],
+          ),
+          */
         ],
       ),
     );
   }
+
+  static void _go(BuildContext context, Widget page) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (_) => page));
+  }
 }
 
-// ---------- UI blocks ----------
+// ---------- UI blocks (원본 유지) ----------
 
 class _SettingsSection extends StatelessWidget {
   final String title;
