@@ -16,6 +16,8 @@ dependencies:
   flutter_svg: ^2.2.1
   package_info_plus: ^8.0.0
   remixicon: ^1.4.1
+  flutter_markdown: ^0.6.18
+  url_launcher: ^6.3.0
 
 dev_dependencies:
   flutter_test:
@@ -30,6 +32,12 @@ flutter:
     - assets/images/profile.png
     - assets/images/banks/
     - assets/images/icons/
+    - assets/policies/privacy_en.md
+    - assets/policies/privacy_ja.md
+    - assets/policies/privacy_ko.md
+    - assets/policies/terms_en.md
+    - assets/policies/terms_ja.md
+    - assets/policies/terms_ko.md
 
 flutter_native_splash:
   color: "#FFFFFF"                 # 라이트 배경

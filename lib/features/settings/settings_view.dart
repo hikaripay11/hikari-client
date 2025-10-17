@@ -179,9 +179,7 @@ class _SettingsViewState extends State<SettingsView> {
               _SettingsTile(
                 iconName: 'shield-user',
                 label: 'Privacy & Terms',
-                onTap: () {
-                  // TODO: 화면 연결
-                },
+                onTap: () => _go(context, const PrivacyTermsScreen()),
               ),
               const _SettingsCaption(text: 'Version 0.1.0 (dev)'),
             ],
