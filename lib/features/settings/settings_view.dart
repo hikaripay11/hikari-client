@@ -174,9 +174,7 @@ class _SettingsViewState extends State<SettingsView> {
               _SettingsTile(
                 iconName: 'book',
                 label: 'Open Source Licenses',
-                onTap: () {
-                  // TODO: 화면 연결
-                },
+                onTap: () => _go(context, const OpenSourceLicensesScreen()),
               ),
               _SettingsTile(
                 iconName: 'shield-user',
