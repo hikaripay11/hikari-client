@@ -165,11 +165,27 @@ class _SettingsViewState extends State<SettingsView> {
 
           _SettingsSection(
             title: 'About',
-            children: const [
-              _SettingsTile(iconName: 'information', label: 'About Hikari'),
-              _SettingsTile(iconName: 'book', label: 'Open Source Licenses'),
-              _SettingsTile(iconName: 'shield-user', label: 'Privacy & Terms'),
-              _SettingsCaption(text: 'Version 0.1.0 (dev)'),
+            children: [
+              _SettingsTile(
+                iconName: 'information',
+                label: 'About Hikari',
+                onTap: () => _go(context, const AboutHikariScreen()),
+              ),
+              _SettingsTile(
+                iconName: 'book',
+                label: 'Open Source Licenses',
+                onTap: () {
+                  // TODO: 화면 연결
+                },
+              ),
+              _SettingsTile(
+                iconName: 'shield-user',
+                label: 'Privacy & Terms',
+                onTap: () {
+                  // TODO: 화면 연결
+                },
+              ),
+              const _SettingsCaption(text: 'Version 0.1.0 (dev)'),
             ],
           ),
 
