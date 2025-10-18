@@ -1,7 +1,6 @@
 // lib/features/menu/menu_view.dart
 import 'package:flutter/material.dart';
 import 'package:remixicon/remixicon.dart';
-import '../../design_system/colors.dart'; // HikariColor 접근 경로 수정
 import '../settings/settings_view.dart';
 import '../../widgets/svg_icon.dart';
 
@@ -12,7 +11,6 @@ class MenuView extends StatelessWidget {
     Widget build(BuildContext context) {
         final cs = Theme.of(context).colorScheme;
         final bottomSafe = MediaQuery.of(context).padding.bottom;
-        const pillHeight = 76.0; // PillNavBar 대략 높이(+마진) 만큼
 
         return Scaffold(
             backgroundColor: cs.surface,
@@ -31,7 +29,7 @@ class MenuView extends StatelessWidget {
                 actions: [
                     IconButton(
                         icon: const Icon(Remix.settings_3_line, size: 22),
-                        color: cs.onSurface.withOpacity(0.85),
+                        color: cs.onSurface.withValues(alpha: 0.85),
                         tooltip: 'Settings',
                         onPressed: () {
                             Navigator.of(context).push(
@@ -44,53 +42,59 @@ class MenuView extends StatelessWidget {
             ),
             body: ListView(
                 padding: EdgeInsets.fromLTRB(16, 8, 16, bottomSafe + 4),
-                children: [
+                children: const [
                     _Section(
                         title: 'Money Actions',
-                        items: const [
+                        items: [
                             _ItemData('Send Money', 'send-plane'),
                             _ItemData('Request Money', 'download'),
                         ],
+                        isLast: true,
                     ),
                     _Section(
                         title: 'Accounts & Instruments',
-                        items: const [
+                        items: [
                             _ItemData('Linked Banks', 'bank'),
                             _ItemData('Cards & Payments', 'credit-card'),
                         ],
+                        isLast: true,
                     ),
                     _Section(
                         title: 'Activity & Records',
-                        items: const [
+                        items: [
                             _ItemData('Transaction History', 'exchange-box'),
                             _ItemData('Receipts Box', 'file-list'),
                         ],
+                        isLast: true,
                     ),
                     _Section(
                         title: 'Insights & Tools',
-                        items: const [
+                        items: [
                             _ItemData('Spending Insights', 'bar-chart-2'),
                             _ItemData('Budget & Limits', 'speed-up'),
                             _ItemData('Currency Rates', 'exchange'),
                         ],
+                        isLast: true,
                     ),
                     _Section(
                         title: 'Rewards & Growth',
-                        items: const [
+                        items: [
                             _ItemData('Rewards & Points', 'gift'),
                             _ItemData('Offers & Coupons', 'price-tag'),
                             _ItemData('Invite Friends', 'user-add'),
                         ],
+                        isLast: true,
                     ),
                     _Section(
                         title: 'Support & Info',
-                        items: const [
+                        items: [
                             _ItemData('Help Center', 'question'),
                             _ItemData('Legal & Privacy', 'shield-keyhole'),
                             _ItemData('About Hikari', 'information'),
                         ],
+                        isLast: true,
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8),
                 ],
             ),
         );
@@ -121,7 +125,7 @@ class _Section extends StatelessWidget {
                     Text(
                         title,
                         style: TextStyle(
-                            color: cs.onSurface.withOpacity(0.75),
+                            color: cs.onSurface.withValues(alpha: 0.75),
                             fontWeight: FontWeight.w700,
                             fontSize: 14,
                         ),
@@ -132,7 +136,7 @@ class _Section extends StatelessWidget {
                         color: cs.surface,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
-                            side: BorderSide(color: cs.onSurface.withOpacity(0.06)),
+                            side: BorderSide(color: cs.onSurface.withValues(alpha: 0.06)),
                         ),
                         child: Column(
                             children: [
@@ -142,7 +146,7 @@ class _Section extends StatelessWidget {
                                     Divider(
                                         height: 1,
                                         thickness: 1,
-                                        color: cs.onSurface.withOpacity(0.06),
+                                        color: cs.onSurface.withValues(alpha: 0.06),
                                     ),
                                 ],
                             ],
@@ -171,7 +175,7 @@ class _MenuTile extends StatelessWidget {
                 fontSize: 15,
                 ),
             ),
-            trailing: SvgIcon('arrow-right-s', size: 16, color: cs.onSurface.withOpacity(0.35)),
+            trailing: SvgIcon('arrow-right-s', size: 16, color: cs.onSurface.withValues(alpha: 0.35)),
             onTap: data.onTap,
             contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
             horizontalTitleGap: 12,

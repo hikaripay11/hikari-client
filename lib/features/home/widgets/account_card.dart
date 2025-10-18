@@ -1,5 +1,4 @@
 // lib/features/home/widgets/account_card.dart
-import 'dart:ui' show FontFeature;
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../../design_system/colors.dart';
@@ -92,10 +91,10 @@ class AccountCard extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                     minimumSize: const Size(0, 0),
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    side: BorderSide(color: HikariColors.primary.withOpacity(.25)),
+                    side: BorderSide(color: HikariColors.primary.withValues(alpha: 0.25)),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     foregroundColor: HikariColors.primary,
-                    backgroundColor: HikariColors.primary.withOpacity(.06),
+                    backgroundColor: HikariColors.primary.withValues(alpha: .06),
                     elevation: 0,
                   ),
                   child: const Text(

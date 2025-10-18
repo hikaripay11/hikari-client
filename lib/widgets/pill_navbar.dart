@@ -51,7 +51,7 @@ Widget _Item(int i, int current, ValueChanged<int> onTap) {
 
         final Color textColor = selected
             ? HikariColors.primary
-            : cs.onSurface.withOpacity(0.55);
+            : cs.onSurface.withValues(alpha: 0.55);
 
         return AnimatedContainer(
           duration: const Duration(milliseconds: 140),

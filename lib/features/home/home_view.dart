@@ -164,7 +164,7 @@ class HomeView extends StatelessWidget {
     ];
 
     final totalBalance = accounts.fold<num>(0, (sum, a) => sum + a.balanceJPY);
-    final monthlySpent = 218400; // realistic monthly spend
+    const monthlySpent = 218400; // realistic monthly spend
 
     return Scaffold(
       backgroundColor: HikariColors.surfaceLight,
