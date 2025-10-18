@@ -58,15 +58,15 @@ class _ThinCard extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(18),
-                border: Border.all(color: const Color(0xFF1C3FAA).withOpacity(.25), width: 1.5),
+                border: Border.all(color: const Color(0xFF1C3FAA).withValues(alpha: 0.25), width: 1.5),
             ),
-            child: Row(
+            child: const Row(
                 children: [
-                    const Icon(Icons.credit_card, color: HikariColors.primary),
-                    const SizedBox(width: 12),
-                    const Expanded(child: Text('VISA • 6253')),
+                    Icon(Icons.credit_card, color: HikariColors.primary),
+                    SizedBox(width: 12),
+                    Expanded(child: Text('VISA • 6253')),
                     Text('\$758964.10',
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: HikariColors.primary,
                             fontWeight: FontWeight.w700,
                         )),

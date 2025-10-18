@@ -63,7 +63,7 @@ class TxnWaveCard extends StatelessWidget {
                                 style: amountStyle,
                                 ),
                                 const SizedBox(height: 6),
-                                Text('From', style: const TextStyle(color: Colors.black45, fontSize: 12)),
+                                const Text('From', style: TextStyle(color: Colors.black45, fontSize: 12)),
                                 Text(name, style: const TextStyle(fontWeight: FontWeight.w700)),
                                 const Spacer(),
                                 Text(date, style: const TextStyle(color: Colors.black38, fontSize: 12)),
